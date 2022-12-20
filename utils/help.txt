@@ -1,0 +1,13 @@
+Hello!
+This is not another telegram bot
+(if you still think it is, you're being absolutely delusional and should probably see a doctor on that...)
+
+Here are the available commands:
+
+/help       - view this message
+/timer      - set a timer for n minutes
+/play       - play a guessing game with a bot
+/cancel     - cancel setting a timer / playing a game
+/define     - find definition for a request in english in wikipedia
+
+you can also just try to say hi (in russian, too!)
