@@ -16,7 +16,7 @@ dp = Dispatcher(bot=bot, storage=storage)
 
 wikipedia.set_lang("en")
 
-BOTS_NUM = 10
+bots_num = 10
 
 class TimerObj(StatesGroup):
     time = State()
@@ -52,8 +52,9 @@ async def play_with_me(msg: types.Message):
     await msg.reply("We're playing a guessing game! "
                     "I've picked a natural number from 0 to 10. Guess it.\n"
                     "Your guess should be a number, presented as a numeral, like so: 3")
+    global bots_num
+    bots_num = randint(0, 10)
     await GuessObj.guess.set()
-    BOTS_NUM = randint(0, 10)
 
 @dp.message_handler(lambda msg: not msg.text.isdigit(), state=GuessObj.guess)
 async def check_a_guess_invalid(msg: types.Message, state: FSMContext):
@@ -65,7 +66,8 @@ async def check_a_guess_invalid(msg: types.Message, state: FSMContext):
 
 @dp.message_handler(lambda msg: msg.text.isdigit(), state=GuessObj.guess)
 async def check_a_guess(msg: types.Message, state: FSMContext):
-    if (int(msg.text) == BOTS_NUM):
+    global bots_num
+    if (int(msg.text) == bots_num):
         await state.finish()
         return await msg.reply("yep 🎉🎉🎉🎉")
     
